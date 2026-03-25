@@ -58,3 +58,27 @@ for vards, balle in dati.items():
         augstaka_balle = balle
         labakais_students = vards
 print(f"Labākais students ir {labakais_students} ar {augstaka_balle} ballēm.")
+
+#C daļa — Kombinācija: 
+#Izveido sarakstu ar vārdnīcām: [{"name": "Anna", "grade": 85}, ...] 
+#Filtrē: tikai studenti ar atzīmi >= 80 
+#Izmanto enumerate() un f-strings formatētai izvadei: "1. Anna — 85" 
+studenti = [                    #saraksts, kurā katrs elements ir atsevišķa vārdnīca ar divām atslēgām: "vārds" un "atzīme".
+    {"name": "Anna", "grade": 85},
+    {"name": "Jānis", "grade": 72},
+    {"name": "Līga", "grade": 95},
+    {"name": "Māris", "grade": 88}
+]  
+
+#Filtrēšana (tikai >= 80)
+teicamnieki = []  #tukšs saraksts, kurā glabāsim teicamniekus
+for students in studenti:  #cikls, kas pārbauda katru vārdnīcu sarakstā
+    if students["grade"] >= 80:  #pārbauda, vai atzīme ir 80 vai vairāk
+        teicamnieki.append(students)  #ja ir, pievieno to teicamnieku sarakstam
+
+#Izvadīšana ar enumerate() un f-strings
+#enumerate() — tā automātiski skaita līdzi (0, 1, 2...), kamēr ej cauri sarakstam. Mēs pieliksim 1, lai saraksts sāktos ar "1.", nevis "0.".
+
+print(f"Studenti ar atzīmi 80 vai vairāk:")  #izprintē virsrakstu
+for index, students in enumerate(teicamnieki, start=1):  #enumerate
+    print(f"{index}. {students['name']} — {students['grade']}")  #izprintē katru teicamnieku ar viņa vārdu un atzīmi
