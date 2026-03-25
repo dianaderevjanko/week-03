@@ -36,3 +36,16 @@ pirmie_tris = skaitli[:3] #Mēs norādām, ka gribam sākt no sākuma un apstāt
 pedejie_divi = skaitli[-2:] #skaitām no beigām, izmantojot mīnusa zīmi. -2 nozīmē "sākt divas pozīcijas no beigām".
 katrs_otrais = skaitli[::2] #atstājam sākumu un beigas tukšas (tas nozīmē "visu sarakstu"), bet pieliekam soli 2, lai izdrukātu katru otro skaitli.
 print(f"Pirmie trīs skaitļi: {pirmie_tris}, \nPēdējie divi skaitļi: {pedejie_divi}, \nKatrs otrais skaitlis: {katrs_otrais}") #\n (jaunas rindas simbols) tiek izmantots, lai izdrukātu katru rezultātu jaunā rindā.
+
+#B daļa - vārdnīcas (dictionaries)
+dati = {"Anna": 85, "Jānis": 72, "Līga": 95}
+print (dati)
+dati["Māris"] = 88  #pievieno jaunu ierakstu vārdnīcai
+
+dati["Jānis"] = 78  #maina Jāņa vērtību uz 78
+
+del dati["Līga"]  #izdzēš Līgas ierakstu no vārdnīcas
+
+#for, lai skaisti izprintētu katru studentu un viņa balles.
+for vards, balle in dati.items():
+    print(f"Students {vards} ieguva {balle} balles.")
