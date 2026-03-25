@@ -49,3 +49,12 @@ del dati["Līga"]  #izdzēš Līgas ierakstu no vārdnīcas
 #for, lai skaisti izprintētu katru studentu un viņa balles.
 for vards, balle in dati.items():
     print(f"Students {vards} ieguva {balle} balles.")
+
+#Atrod studentu ar augstāko atzīmi (for cikls pa vārdnīcu) 
+labakais_students = None
+augstaka_balle = -1  #sākam ar -1, jo balles nevar būt negatīvas
+for vards, balle in dati.items():
+    if balle > augstaka_balle:
+        augstaka_balle = balle
+        labakais_students = vards
+print(f"Labākais students ir {labakais_students} ar {augstaka_balle} ballēm.")
