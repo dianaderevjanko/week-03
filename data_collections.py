@@ -30,3 +30,9 @@ for skaitlis in skaitli:        #Cikls ies cauri tavam oriģinālajam sarakstam,
     if skaitlis % 2 == 0:       #Ja skaitlis ir pāra, tas tiks pievienots jaunajam sarakstam ar .append() metodi.
         para_skaitli.append(skaitlis)
 print("Pāra skaitļi:", para_skaitli)  #izprintē pāra skaitļu sarakstu pēc cikla beigām.
+
+#Šķēlumi (slices) eizmaina oriģinālo sarakstu, bet izveido tā "kopiju" pēc taviem nosacījumiem.
+pirmie_tris = skaitli[:3] #Mēs norādām, ka gribam sākt no sākuma un apstāties pie indeksa 3 (kurš pats netiek iekļauts).
+pedejie_divi = skaitli[-2:] #skaitām no beigām, izmantojot mīnusa zīmi. -2 nozīmē "sākt divas pozīcijas no beigām".
+katrs_otrais = skaitli[::2] #atstājam sākumu un beigas tukšas (tas nozīmē "visu sarakstu"), bet pieliekam soli 2, lai izdrukātu katru otro skaitli.
+print(f"Pirmie trīs skaitļi: {pirmie_tris}, \nPēdējie divi skaitļi: {pedejie_divi}, \nKatrs otrais skaitlis: {katrs_otrais}") #\n (jaunas rindas simbols) tiek izmantots, lai izdrukātu katru rezultātu jaunā rindā.
