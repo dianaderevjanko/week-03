@@ -6,5 +6,27 @@ skaitli.append(15)
 print(skaitli)
 
 #Metode .pop() izdara divas lietas: tā izņem pēdējo elementu no saraksta un to "atdod" (tu vari to saglabāt citā mainīgajā vai vienkārši izdzēst).
-skaitli.pop()
+skaitli.pop()   #izsauc .pop() savam sarakstam un izprintē sarakstu pēdējo reizi. Redzēsi, ka pēdējais skaitlis ir pazudis.
 print(skaitli)
+
+#Summas aprēķināšana ar for ciklu
+summa = 0   #izveidojam mainīgo summa, kurā glabāsim rezultātu. Sākumā tā ir 0, jo mēs vēl neesam saskaitījuši nevienu skaitli.
+for skaitlis in skaitli:   #izveidojam for ciklu,
+    summa += skaitlis # vai summa = summa + skaitlis
+print("Summa:", summa)
+
+#Lai aprēķinātu vidējo vērtību, tev ir jāizdara viena vienkārša darbība: kopējā summa jādala ar skaitļu skaitu.
+summa = 0
+skaits = 0
+for skaitlis in skaitli:
+    summa += skaitlis
+    skaits += 1  # vai skaits = skaits + 1                                          
+vidējā = summa / skaits if skaits > 0 else 0
+print("Vidējā vērtība:", vidējā)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+
+#izveidot jaunu sarakstu tikai ar pāra skaitļiem (for + if)
+para_skaitli = []   #tukšs saraksts, kurā glabāsim pāra skaitļus
+for skaitlis in skaitli:        #Cikls ies cauri tavam oriģinālajam sarakstam, bet if pārbaudīs, vai skaitlis dalās ar 2 bez atlikuma (% 2 == 0).
+    if skaitlis % 2 == 0:       #Ja skaitlis ir pāra, tas tiks pievienots jaunajam sarakstam ar .append() metodi.
+        para_skaitli.append(skaitlis)
+print("Pāra skaitļi:", para_skaitli)  #izprintē pāra skaitļu sarakstu pēc cikla beigām.
