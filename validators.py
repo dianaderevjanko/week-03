@@ -62,6 +62,36 @@ def is_strong_password(text):
     has_digit = any(c.isdigit() for c in text)
     
     return has_alpha and has_digit  
+
+# 5. is_valid_date(text)        # YYYY-MM-DD formāts (pamata pārbaude) 
+
+def is_valid_date(text):
+    """
+    Pārbauda, vai teksts atbilst datuma formātam YYYY-MM-DD.
+    """
+    if not isinstance(text, str):
+        return False
+    
+    parts = text.split("-")
+    
+    if len(parts) != 3:
+        return False
+    
+    year, month, day = parts
+    
+    # Pārbaudām, vai gads, mēnesis un diena ir cipari
+    if not (year.isdigit() and month.isdigit() and day.isdigit()):
+        return False
+    
+    # Pārbaudām gadu, mēnesi un dienu loģiskās robežas
+    year = int(year)
+    month = int(month)
+    day = int(day)
+    
+    if year < 1 or month < 1 or month > 12 or day < 1 or day > 31:
+        return False
+    
+    return True
    
 if __name__ == "__main__":
     # Testējam is_email funkciju
@@ -83,3 +113,9 @@ if __name__ == "__main__":
     print(f"Parole 'Parole123' ir stipra? {is_strong_password('Parole123')}")  # True
     print(f"Parole 'Parole' ir stipra? {is_strong_password('Parole')}")     # False
     print(f"Parole '12345678' ir stipra? {is_strong_password('12345678')}")   # False
+
+    # Testējam is_valid_date funkciju
+    print("\n--- Datuma pārbaude ---")
+    print(f"Datums '2024-03-27': {is_valid_date('2024-03-27')}") # True
+    print(f"Datums '2024-13-01': {is_valid_date('2024-13-01')}") # False (mēnesis 13)
+    print(f"Datums 'abc-de-fg': {is_valid_date('abc-de-fg')}")   # False (nav cipari)
