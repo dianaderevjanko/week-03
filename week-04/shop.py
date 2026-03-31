@@ -1,13 +1,18 @@
-# galvenā programma, kas izmantos storage.py
 import sys
-import storage # Importējam tavu storage.py failu
+import storage 
+import utils # Pārliecinies, ka šis fails ir tajā pašā mapē!
 
-def add_item(name, price):
+def add_item(name, qty, price):
     items = storage.load_list()
-    items.append({"name": name, "price": float(price)})
+    # Izveidojam vārdnīcu ar visiem 3 laukiem
+    new_item = {"name": name, "qty": int(qty), "price": float(price)}
+    items.append(new_item)
     storage.save_list(items)
-    print(f"✓ Pievienots: {name} ({price} EUR)")
-
+    
+    # Izmantojam utils aprēķinam
+    line_total = utils.calc_line_total(new_item)
+    print(f"✓ Pievienots: {name} x {qty} ({price} EUR/gab.) = {line_total:.2f} EUR")
+    
 def list_items():
     items = storage.load_list()
     if not items:
@@ -16,17 +21,18 @@ def list_items():
     
     print("Iepirkumu saraksts:")
     for i, item in enumerate(items, 1):
-        print(f"  {i}. {item['name']} — {item['price']:.2f} EUR")
+        # Izmantojam utils, lai parādītu rindiņas kopsummu
+        line_total = utils.calc_line_total(item)
+        print(f"  {i}. {item['name']} x {item['qty']} — {item['price']:.2f} EUR/gab. = {line_total:.2f} EUR")
 
 def show_total():
-    """Aprēķina un izvada saraksta kopsummu."""
     items = storage.load_list()
-    # sum() saskaita visas cenas no saraksta
-    total_price = sum(item['price'] for item in items)
-    print(f"Kopā: {total_price:.2f} EUR ({len(items)} produkti)")
+    # Izmantojam jaunās funkcijas no utils.py
+    total_price = utils.calc_grand_total(items)
+    total_units = utils.count_units(items)
+    print(f"Kopā: {total_price:.2f} EUR ({total_units} vienības, {len(items)} produkti)")
 
 def clear_list():
-    """Pilnībā iztukšo iepirkumu sarakstu."""
     storage.save_list([])
     print("✓ Saraksts notīrīts.")
 
@@ -37,19 +43,17 @@ def main():
     
     command = sys.argv[1].lower()
 
-    if command == "add" and len(sys.argv) == 4:
-        add_item(sys.argv[2], sys.argv[3])
+    # ŠEIT BIJA KĻŪDA: Jāiedod visi trīs sys.argv!
+    if command == "add" and len(sys.argv) == 5:
+        add_item(sys.argv[2], sys.argv[3], sys.argv[4])
     elif command == "list":
         list_items()
-    
     elif command == "total":
         show_total()
     elif command == "clear":
         clear_list()
-
     else:
         print("Nepareiza komanda vai trūkst argumentu!")
-
 
 if __name__ == "__main__":
     main()
